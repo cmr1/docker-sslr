@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+'use strict';
+
+// Require the HookDns class
+const HookDns = require('../src/hook-dns');
+const hook = new HookDns();
+
+// Run the hook
+hook.run();

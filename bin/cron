@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+'use strict';
+
+// Require the Sslr class
+const Sslr = require('../src/sslr');
+const sslr = new Sslr();
+
+// Run the Sslr cron
+sslr.cron();

@@ -1,0 +1,37 @@
+{
+  "family": "sslr",
+  "containerDefinitions": [
+    {
+      "name": "sslr",
+      "image": "cmr1/sslr",
+      "cpu": 128,
+      "memory": 128,
+      "environment": [
+        {
+          "name": "VERBOSE",
+          "value": "true"
+        },
+        {
+          "name": "APP_ENV",
+          "value": "production"
+        },
+        {
+          "name": "AWS_DEFAULT_REGION",
+          "value": "us-east-1"
+        },
+        {
+          "name": "DOMAINS",
+          "value": ""
+        }
+      ],
+      
+      "logConfiguration": {
+        "logDriver": "awslogs", 
+        "options": {
+          "awslogs-group": "sslr",
+          "awslogs-region": "us-east-1"          
+        }
+      }
+    }
+  ]
+}

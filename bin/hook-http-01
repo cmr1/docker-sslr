@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+'use strict';
+
+// Require the HookHttp class
+const HookHttp = require('../src/hook-http');
+const hook = new HookHttp();
+
+// Run the hook
+hook.run();
