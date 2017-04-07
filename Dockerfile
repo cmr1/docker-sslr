@@ -25,6 +25,8 @@ RUN npm install
 
 COPY . .
 
+VOLUME [ "/etc/dehydrated" ]
+
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
 
 CMD [ "npm", "start" ]
