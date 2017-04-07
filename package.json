@@ -1,5 +1,5 @@
 {
-  "name": "cmr1/sslr",
+  "name": "cmr1-sslr",
   "version": "0.0.1",
   "description": "SSL Certificate Generator Docker Container",
   "main": "index.js",
