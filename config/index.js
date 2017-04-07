@@ -23,6 +23,8 @@ module.exports = {
   timeout: process.env.TIMEOUT || 600000,
   env: process.env.APP_ENV || 'development',
   output_dir: process.env.OUTPUT_DIR || '',
+  output_s3: process.env.OUTPUT_S3 || '',
+  output_acm: process.env.OUTPUT_ACM || '',
   dehydrated_path: process.env.DEHYDRATED_PATH || '/etc/dehydrated',
   challenge_webroot: process.env.CHALLENGE_WEBROOT || '/var/www/acme',
   challenge_type: process.env.CHALLENGE_TYPE || AVAILABLE_CHALLENGES[0],

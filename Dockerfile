@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:6-slim
 
 LABEL maintainer "Charlie McClung <charlie.mcclung@autodesk.com>"
 
@@ -24,5 +24,7 @@ COPY package.json .
 RUN npm install
 
 COPY . .
+
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
 
 CMD [ "npm", "start" ]

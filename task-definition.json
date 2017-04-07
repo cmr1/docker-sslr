@@ -21,7 +21,23 @@
         },
         {
           "name": "DOMAINS",
-          "value": ""
+          "value": "example.com,www.example.com"
+        },
+        {
+          "name": "OUTPUT_ACM",
+          "value": "yes"
+        },
+        {
+          "name": "CHALLENGETYPE",
+          "value": "dns-01"
+        },
+        {
+          "name": "KEYSIZE",
+          "value": "2048"
+        },
+        {
+          "name": "CONTACT_EMAIL",
+          "value": "webmaster@example.com"
         }
       ],
       

@@ -30,7 +30,8 @@ class Hook extends Logger {
     // Enable logging based on hook config
     this.enableLogging(logConfig);
 
-    // Create a route53 object for this hook
+    // Create an acm & route53 object for this hook
+    this.aws_acm = new cmr1aws.ACM();
     this.route53 = new cmr1aws.Route53();
 
     // Get CLI arguments (from dehydrated hook execution)
@@ -269,7 +270,7 @@ class Hook extends Logger {
 
         // Only proceed without errors
         if (!err) {
-          this.log('Copying files to:', config.output_dir);       
+          this.warn('Copying files to:', config.output_dir);       
 
           // For each pem file (key & cert/chain), copy to new directory
           async.each([ this.pem_files.privkey, this.pem_files.fullchain ], (filepath, next) => {
@@ -299,8 +300,26 @@ class Hook extends Logger {
             if (err) this.error(err);
 
             // Finished copying cert files
-            this.log('Hook.deployCert() - copy cert files finished.');
+            this.warn('Hook.deployCert() - copy cert files to output_dir finished.');
           });
+        }
+      });
+    }
+
+    if (config.output_acm && config.output_acm.trim().toLowerCase() === 'yes') {
+      this.warn('Importing SSL cert to ACM');
+
+      const certData = {
+        Certificate: fs.readFileSync(this.pem_files.cert), /* required */
+        PrivateKey: fs.readFileSync(this.pem_files.privkey), /* required */
+        CertificateChain: fs.readFileSync(this.pem_files.chain) /* recommended */
+      };
+
+      this.aws_acm.createOrUpdateCert(this.domain, certData, cert => {
+        if (!cert || !cert.CertificateArn) {
+          this.error('Unable to import cert to ACM!', cert);
+        } else {
+          this.warn(`Hook.deployCert() - cert imported to ACM with ARN: ${cert.CertificateArn}`);
         }
       });
     }

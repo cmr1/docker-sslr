@@ -1,28 +1,39 @@
-########################################################
-# This is the main config file for dehydrated          #
-#                                                      #
-# This file is looked for in the following locations:  #
-# $SCRIPTDIR/config (next to this script)              #
-# /usr/local/etc/dehydrated/config                     #
-# /etc/dehydrated/config                               #
-# ${PWD}/config (in current working-directory)         #
-#                                                      #
-# Default values of this config are in comments        #
-########################################################
+#!/bin/bash
 
-# Resolve names to addresses of IP version only. (curl)
-# supported values: 4, 6
-# default: <unset>
-#IP_VERSION=
+DEHYDRATED_PATH=/etc/dehydrated
 
-CA=PLACEHOLDER_CA_DIR
-CA_TERMS=PLACEHOLDER_CA_TERMS
+CA_DIR="https://acme-staging.api.letsencrypt.org/directory"
+CA_TERMS="https://acme-staging.api.letsencrypt.org/terms"
+
+CHALLENGETYPE="${CHALLENGETYPE:-http-01}"
+WELLKNOWN="${WELLKNOWN:-/var/www/dehydrated}"
+KEYSIZE="${KEYSIZE:-4096}"
+HOOK_CHAIN="${HOOK_CHAIN:-no}"
+CONTACT_EMAIL="${CONTACT_EMAIL:-}"
+
+if [[ "$APP_ENV" == "production" ]]; then
+  CA="https://acme-v01.api.letsencrypt.org/directory"
+  CA_TERMS="https://acme-v01.api.letsencrypt.org/terms"
+fi
+
+config="${DEHYDRATED_PATH}/config"
+
+sed -i "s|PLACEHOLDER_CA_DIR|${CA_DIR}|g" $config
+sed -i "s|PLACEHOLDER_CA_TERMS|${CA_TERMS}|g" $config
+sed -i "s|PLACEHOLDER_KEYSIZE|${KEYSIZE}|g" $config
+sed -i "s|PLACEHOLDER_WELLKNOWN|${WELLKNOWN}|g" $config
+sed -i "s|PLACEHOLDER_HOOK_CHAIN|${HOOK_CHAIN}|g" $config
+sed -i "s|PLACEHOLDER_CONTACT_EMAIL|${CONTACT_EMAIL}|g" $config
+sed -i "s|PLACEHOLDER_CHALLENGETYPE|${CHALLENGETYPE}|g" $config
+
+# Execute the CMD from the Dockerfile and pass in all of its arguments.
+exec "$@"
 
 # Path to license agreement (default: <unset>)
 #LICENSE=""
 
 # Which challenge should be used? Currently http-01 and dns-01 are supported
-CHALLENGETYPE="PLACEHOLDER_CHALLENGETYPE"
+# CHALLENGETYPE="dns-01"
 
 # Path to a directory containing additional config files, allowing to override
 # the defaults found in the main configuration file. Additional config files
@@ -43,10 +54,10 @@ CHALLENGETYPE="PLACEHOLDER_CHALLENGETYPE"
 #ACCOUNTDIR="${BASEDIR}/accounts"
 
 # Output directory for challenge-tokens to be served by webserver or deployed in HOOK (default: /var/www/dehydrated)
-WELLKNOWN="PLACEHOLDER_WELLKNOWN"
+#WELLKNOWN="/var/www/dehydrated"
 
 # Default keysize for private keys (default: 4096)
-KEYSIZE="PLACEHOLDER_KEYSIZE"
+# KEYSIZE="2048"
 
 # Path to openssl config file (default: <unset> - tries to figure out system default)
 #OPENSSL_CNF=
@@ -64,7 +75,7 @@ KEYSIZE="PLACEHOLDER_KEYSIZE"
 #HOOK=
 
 # Chain clean_challenge|deploy_challenge arguments together into one hook call per certificate (default: no)
-HOOK_CHAIN="PLACEHOLDER_HOOK_CHAIN"
+#HOOK_CHAIN="no"
 
 # Minimum days before expiration to automatically renew certificate (default: 30)
 #RENEW_DAYS="30"
@@ -79,7 +90,7 @@ HOOK_CHAIN="PLACEHOLDER_HOOK_CHAIN"
 #KEY_ALGO=rsa
 
 # E-mail to use during the registration (default: <unset>)
-CONTACT_EMAIL="PLACEHOLDER_CONTACT_EMAIL"
+#CONTACT_EMAIL=
 
 # Lockfile location, to prevent concurrent access (default: $BASEDIR/lock)
 #LOCKFILE="${BASEDIR}/lock"

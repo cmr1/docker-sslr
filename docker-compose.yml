@@ -3,5 +3,8 @@ version: '2'
 services:
   sslr:
     build: .
+    volumes:
+      - ./certs:/etc/dehydrated/certs
     env_file:
       - .sslr.env
+    
