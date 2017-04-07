@@ -1,5 +1,5 @@
 {
-  "name": "@adsk/formit-sslr",
+  "name": "cmr1/sslr",
   "version": "0.0.1",
   "description": "SSL Certificate Generator Docker Container",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "dehydrated",
     "letsencrypt"
   ],
-  "author": "Autodesk",
+  "author": "",
   "license": "ISC",
   "homepage": "",
   "dependencies": {
