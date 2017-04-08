@@ -1,0 +1,18 @@
+sudo: required
+language: python
+services:
+- docker
+env:
+  global:
+  - APP_ENV=test
+  - DOMAINS=travis.test.aws.cmr1.com
+  - AWS_DEFAULT_REGION=us-east-1
+  - AWS_DEFAULT_OUTPUT=json
+before_install:
+- pip install awscli
+- docker build -t cmr1/sslr .
+script:
+- aws s3 ls
+after_success:
+- echo "Deploy"
+# - ./deploy.sh
