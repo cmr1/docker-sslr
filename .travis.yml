@@ -6,12 +6,13 @@ env:
   global:
   - APP_ENV=test
   - DOMAINS=travis.test.aws.cmr1.com
+  - secure: BmRBszZqm0ICwjidnM/LSmqSYaIm3FIYQ5ax6Q+vPWzokWoSY67IzIq+qrtYSCJi6rWAuAiKP0i3nEgg1xyYdtsDK/IGTPHRlgMsVg5ACYPqi+02TGHgDbcKsBc7HlxfZidT2VP+N50bnG28k0VI71g/O8Ox6XjirFvKcerFoSijTgXpXbZE9+JLBab3cK7jnO3ciBsvxEo+kVKI4dAV1x7BRQGU7TV69hqeMsnVHjoJY5NaX6oyKBPF7DDgj4axXyNjbkNM6z6sYxzOylFzIwc9Peyw/9tHSf3Iy7cGbfS6AytH2rYnTdRJlNw46EHCsgse6YLO8ehZlDu5uC9AWPc96il7dmZLmyD+cBl1tFyhMuk1t65aWqooAl0kpJ6U7V+nlrS/B2b1LiMv8JvGG8YiKYRVrUJNfihCBXNnh9qac00RAvXZ9/5j+RLiitceXDEaZljWlkzVbyOi2GHy42V0sAHaCKT2b2iZyIDH0601AK51FcuiC8CqRKV9eC9bbQXkTqVj1/Ab+vlYFXq5oWt2O9pggiu2nQQPBZFqmqu49CdwT/oaldJwvLhLTsr7bWXtsuDhBQtLbTZXxVcRcVg2TuxeQpsupltJy5t6HbN+TP2beU3vu8pu0JJHEG1+eGN9erTOoCNNb6eVun2IR7hdQiVu/w+tmI13QMl53Jc=
 before_install:
 - pip install awscli
 - docker build -t cmr1/sslr .
 script:
 - echo $APP_ENV
 - echo $DOMAINS
-# - aws s3 ls
+- echo $SOMETHING
 after_success:
 - echo "Deploy"
