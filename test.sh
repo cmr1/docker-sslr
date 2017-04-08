@@ -2,8 +2,6 @@
 
 set -e
 
-sudo su -
-
 cert_dir=`pwd`/certs/$DOMAIN
 expected_files="cert.pem privkey.pem chain.pem fullchain.pem"
 

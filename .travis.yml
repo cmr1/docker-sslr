@@ -16,6 +16,9 @@ install:
 - docker run -v certs:/etc/dehydrated/certs -e APP_ENV -e DOMAINS=$DOMAIN -e AWS_ACCESS_KEY_ID
   -e AWS_SECRET_ACCESS_KEY cmr1/sslr
 script:
+- whoami
+- pwd
+- ls -al
 - ./test.sh
 after_success:
 - ./deploy.sh
