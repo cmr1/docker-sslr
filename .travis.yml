@@ -1,0 +1,16 @@
+sudo: required
+language: ruby
+services:
+- docker
+env:
+  global:
+  - APP_ENV=test
+  - DOMAINS=travis.test.aws.cmr1.com
+before_install:
+- docker build -t cmr1/sslr .
+script:
+- echo $APP_ENV
+- echo $DOMAINS
+- echo $SOMETHING
+after_success:
+- echo "Deploy"
