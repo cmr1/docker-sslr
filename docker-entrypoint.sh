@@ -12,7 +12,7 @@ HOOK_CHAIN="${HOOK_CHAIN:-no}"
 CONTACT_EMAIL="${CONTACT_EMAIL:-}"
 
 if [[ "$APP_ENV" == "production" ]]; then
-  CA="https://acme-v01.api.letsencrypt.org/directory"
+  CA_DIR="https://acme-v01.api.letsencrypt.org/directory"
   CA_TERMS="https://acme-v01.api.letsencrypt.org/terms"
 fi
 
