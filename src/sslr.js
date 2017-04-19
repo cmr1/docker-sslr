@@ -95,7 +95,7 @@ class Sslr extends Logger {
   cron(callback) {
 
     // Running dehydrator with false as first argument, it will run on all domains in domains.txt 
-    this.dehydrator.run(false, config.challenge_type, config.challenge_hook, callback);
+    this.dehydrator.run(false, config.challenge_type, config.getHookByType(config.challenge_type), callback);
   }
 }
 
