@@ -7,4 +7,11 @@ const Sslr = require('../src/sslr');
 const sslr = new Sslr();
 
 // Run the Sslr cron
-sslr.cron();
+sslr.cron((err, domains) => {
+  if (err) {
+    console.error('FAILED!', err);
+    process.exit(1);
+  } else {
+    console.log('SUCCESS!', domains);
+  }
+});
