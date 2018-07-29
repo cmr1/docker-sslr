@@ -1,10 +1,17 @@
-version: '2'
+version: '3.5'
 
 services:
   sslr:
     build: .
     volumes:
       - ./certs:/etc/dehydrated/certs
+      - type: volume
+        source: nodemodules
+        target: /sslr/node_modules
+        volume:
+          nocopy: true
     env_file:
       - .sslr.env
-    
+
+volumes:
+  nodemodules:

@@ -21,8 +21,8 @@
   "homepage": "",
   "dependencies": {
     "cmr1-aws": "^0.2.3",
-    "cmr1-cli": "^0.1.6",
-    "cmr1-logger": "0.0.3",
+    "cmr1-cli": "^0.1.11",
+    "cmr1-logger": "0.1.4",
     "fs-extra": "^2.0.0"
   }
 }

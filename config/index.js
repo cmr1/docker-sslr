@@ -27,7 +27,7 @@ module.exports = {
   output_acm: process.env.OUTPUT_ACM || '',
   dehydrated_path: process.env.DEHYDRATED_PATH || '/etc/dehydrated',
   challenge_webroot: process.env.CHALLENGE_WEBROOT || '/var/www/acme',
-  challenge_type: process.env.CHALLENGE_TYPE || AVAILABLE_CHALLENGES[0],
+  challenge_type: process.env.CHALLENGETYPE || AVAILABLE_CHALLENGES[0],
   constants: {
     ROOT_PATH,
     CHALLENGE_HTTP,
